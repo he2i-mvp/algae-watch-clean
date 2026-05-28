@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Algae Watch HE2I v1.0beta</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#f5f8fb;color:#112033}
+    .site-header{background:white;border-bottom:1px solid #dce6ef;padding:28px clamp(18px,4vw,56px)}
+    .brand{display:flex;gap:16px;align-items:center}
+    .brand-mark{width:54px;height:54px;border-radius:18px;background:#c8f5ff;color:#064e5f;display:grid;place-items:center;font-weight:800}
+    .eyebrow{margin:0 0 4px;color:#05718a;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:700}
+    h1{font-size:clamp(26px,4vw,42px);line-height:1.05;margin:0}
+    h2{margin:0 0 14px;font-size:22px}
+    .definition{max-width:980px;line-height:1.6;color:#43556a;margin:18px 0 0}
+    .layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.7fr);gap:22px;padding:24px clamp(18px,4vw,56px)}
+    .panel{background:white;border:1px solid #dce6ef;border-radius:24px;box-shadow:0 12px 35px rgba(17,32,51,.06);padding:22px}
+    .note{background:#ecfbff;border:1px solid #bceef8;color:#13596a;border-radius:16px;padding:14px;line-height:1.5}
+    fieldset{border:1px solid #dce6ef;border-radius:18px;padding:18px;margin:18px 0}
+    legend{font-weight:800;color:#1a3c4a;padding:0 8px}
+    label{display:block;font-weight:650;font-size:14px;margin:12px 0 6px}
+    input,select,textarea{width:100%;margin-top:7px;border:1px solid #cdd9e4;border-radius:12px;padding:11px 12px;font:inherit;background:white}
+    textarea{resize:vertical}
+    .checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .checks label,.inline{display:flex;align-items:center;gap:10px;border:1px solid #dce6ef;border-radius:14px;padding:10px;margin:0}
+    .checks input,.inline input{width:auto;margin:0}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    button{border:0;border-radius:14px;padding:12px 16px;font-weight:800;cursor:pointer;background:#087c94;color:white}
+    button[type=button]{background:#e6eef5;color:#173449}
+    .status{font-weight:750}
+    .status.ok{color:#087a41}
+    .status.err{color:#b42318}
+    pre{background:#0d1726;color:#e8f1fb;border-radius:18px;padding:16px;overflow:auto;max-height:520px;font-size:12px;line-height:1.55}
+    .route{line-height:1.8;color:#34485f}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.checks{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">AW</div>
+      <div>
+        <p class="eyebrow">Algae Watch HE2I v1.0beta</p>
+        <h1>Human Bio-Informational Sensor Intake</h1>
+      </div>
+    </div>
+    <p class="definition">Algae Watch — powered by P-BBFC NEXUS-UI3A, an AI/ML control system for predictive coastal biomass-flow management, including forecasting of floating seaweed mats and generation of mission decisions for controlled biomass interception.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Submit Algae Watch Report</h2>
+      <p class="note">A human submitting a Safety Report is treated as a bio-informational sensor within the hybrid sensing layer. Human observations are structured, role-aware and confidence-scored inputs to the P-BBFC NEXUS-UI3A control system.</p>
+
+      <form id="reportForm">
+        <fieldset>
+          <legend>1. Case & location</legend>
+          <label>Zone / beach / coastal segment <input name="zone_name" value="Port Vieux, Biarritz" required></label>
+          <label>Observation time <input name="observation_time" type="datetime-local"></label>
+          <label>Location mode <select name="location_mode"><option value="map_pin">Map pin</option><option value="gps">GPS coordinates</option><option value="named_place">Named place</option><option value="approximate">Approximate description</option></select></label>
+          <label>Location details <input name="location_details" placeholder="GPS, map pin, landmark or short description"></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Reporter as bio-informational sensor</legend>
+          <label>Reporter role <select name="reporter_role" required><option value="">Select role</option><option>Beach staff</option><option>Lifeguard</option><option>Municipal staff</option><option>O2P coordinator</option><option>UAV operator</option><option>Fisherman</option><option>Recreational vessel operator</option><option>SUP / kayak user</option><option>Diver</option><option>Resident</option><option>Visitor</option><option>Researcher / observer</option></select></label>
+          <label>Contact for follow-up, optional <input name="contact" placeholder="Email or phone"></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Observed hazard factors</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="phenomena" value="Floating algae mat"> Floating algae mat</label>
+            <label><input type="checkbox" name="phenomena" value="Unusual water colour"> Unusual water colour</label>
+            <label><input type="checkbox" name="phenomena" value="Foam / mucilage"> Foam / mucilage</label>
+            <label><input type="checkbox" name="phenomena" value="Strong odour"> Strong odour</label>
+            <label><input type="checkbox" name="phenomena" value="Abnormal biomass accumulation"> Abnormal biomass accumulation</label>
+            <label><input type="checkbox" name="phenomena" value="Skin / respiratory symptoms"> Skin / respiratory symptoms</label>
+            <label><input type="checkbox" name="phenomena" value="Unusual animal behaviour"> Unusual animal behaviour</label>
+            <label><input type="checkbox" name="phenomena" value="Drift toward bathing zone"> Drift toward bathing zone</label>
+          </div>
+          <label>Water colour <input name="water_colour" placeholder="green, brown, reddish, cloudy..."></label>
+          <label>Odour <input name="odour" placeholder="none, sulfur, rotten algae..."></label>
+          <label>Symptoms / public-health context <input name="symptoms" placeholder="skin, cough, eye irritation..."></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Marine algae mat observation</legend>
+          <label class="inline"><input type="checkbox" name="marine_mat_observed" value="yes"> Floating algae mat observed</label>
+          <label>Approximate mat size <input name="mat_size" placeholder="e.g. 20 x 5 m / football field"></label>
+          <label>Mat density <select name="mat_density"><option value="">Unknown</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></label>
+          <label>Movement <select name="mat_movement"><option value="">Unknown</option><option value="stationary">Stationary</option><option value="alongshore">Alongshore</option><option value="offshore">Offshore</option><option value="toward_bathing_zone">Toward bathing zone</option></select></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. Local context & evidence</legend>
+          <label>Wind direction <input name="wind_direction" placeholder="SW, 225°, from sea..."></label>
+          <label>Wind speed <input name="wind_speed" placeholder="m/s, km/h or qualitative"></label>
+          <label>Current / drift direction <input name="current_direction" placeholder="toward beach, east, etc."></label>
+          <label class="inline"><input type="checkbox" name="photo_video" value="yes"> Photo / video / UAV frame available</label>
+          <label>Narrative observation <textarea name="narrative" rows="5" placeholder="Describe what you saw, what changed, movement direction, public exposure, animals, odour, beach use, etc."></textarea></label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit">Submit Algae Watch Report</button>
+          <button type="button" id="previewBtn">Preview dataset</button>
+        </div>
+        <p id="status" class="status"></p>
+      </form>
+    </section>
+
+    <aside class="panel">
+      <h2>Dataset Preview</h2>
+      <pre id="datasetPreview">{}</pre>
+      <h2>Downstream route</h2>
+      <ul class="route"><li>Hybrid Sensing / Observation Layer</li><li>Human bio-informational sensor input</li><li>Confidence-scored Algae Watch case</li><li>P-BBFC NEXUS-UI3A triage</li><li>Possible UAV validation / OpenDrift / QGIS mission artefact</li></ul>
+    </aside>
+  </main>
+
+  <script>
+    const API_ENDPOINT = "https://algae-watch-submit.hq-safegate.workers.dev";
+
+    function formToDataset(form) {
+      const fd = new FormData(form);
+      const phenomena = fd.getAll("phenomena");
+      const zone = fd.get("zone_name") || "AW_ZONE";
+      const now = new Date().toISOString();
+      const caseId = "AW-" + String(zone).toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 10) + "-" + now.replace(/[-:.TZ]/g, "").slice(0, 12);
+      let confidence = 1;
+      if (["gps","map_pin"].includes(fd.get("location_mode"))) confidence += 1;
+      if (fd.get("photo_video") === "yes") confidence += 1;
+      if (["Lifeguard","Municipal staff","O2P coordinator","UAV operator","Researcher / observer"].includes(fd.get("reporter_role"))) confidence += 1;
+      if (phenomena.length >= 2) confidence += 1;
+      confidence = Math.min(confidence, 5);
+      const highSignals = ["Drift toward bathing zone","Skin / respiratory symptoms","Foam / mucilage","Floating algae mat"];
+      const hits = phenomena.filter(x => highSignals.includes(x)).length;
+      let urgency = "Low";
+      if (fd.get("mat_movement") === "toward_bathing_zone" || hits >= 3) urgency = "Critical";
+      else if (hits >= 2 || fd.get("mat_density") === "high") urgency = "High";
+      else if (hits === 1 || fd.get("mat_density") === "medium") urgency = "Elevated";
+      return {
+        case_id:caseId, case_type:"ALGAE_WATCH_SAFETY_REPORT", dataset_version:"Algae Watch HE2I v1.0beta",
+        created_utc:now, zone_name:fd.get("zone_name")||null, source_type:"human_bio_informational_sensor",
+        reporter_role:fd.get("reporter_role")||null, contact_for_follow_up:fd.get("contact")||null,
+        observation_time_local:fd.get("observation_time")||null, location_mode:fd.get("location_mode")||null,
+        location_details:fd.get("location_details")||null, observed_phenomena:phenomena,
+        water_colour:fd.get("water_colour")||null, odour:fd.get("odour")||null, symptoms_context:fd.get("symptoms")||null,
+        marine_mat_observed:fd.get("marine_mat_observed")==="yes", mat_size:fd.get("mat_size")||null,
+        mat_density_class:fd.get("mat_density")||null, mat_movement_class:fd.get("mat_movement")||null,
+        wind_direction:fd.get("wind_direction")||null, wind_speed:fd.get("wind_speed")||null,
+        current_direction:fd.get("current_direction")||null, evidence_photo_video_available:fd.get("photo_video")==="yes",
+        narrative:fd.get("narrative")||null, confidence_score:confidence, urgency_class:urgency,
+        downstream_route:["Critical","High"].includes(urgency)?"P-BBFC_NEXUS_UI3A_TRIAGE":"ALGAE_WATCH_MONITORING_QUEUE"
+      };
+    }
+    function renderPreview(){const form=document.getElementById("reportForm");const dataset=formToDataset(form);document.getElementById("datasetPreview").textContent=JSON.stringify(dataset,null,2);return dataset;}
+    document.getElementById("previewBtn").addEventListener("click",renderPreview);
+    document.getElementById("reportForm").addEventListener("input",renderPreview);
+    document.getElementById("reportForm").addEventListener("submit",async(event)=>{
+      event.preventDefault();
+      const status=document.getElementById("status");
+      const dataset=renderPreview();
+      status.className="status";
+      status.textContent="Submitting report...";
+      try {
+        const response=await fetch(API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dataset)});
+        const data=await response.json().catch(()=>({}));
+        if(!response.ok) throw new Error(data.error || "Submission failed");
+        status.className="status ok";
+        status.textContent="Report submitted. Telegram notification channel accepted the case.";
+      } catch(error) {
+        status.className="status err";
+        status.textContent="Submission failed: "+error.message;
+      }
+    });
+    renderPreview();
+  </script>
+</body>
+</html>
